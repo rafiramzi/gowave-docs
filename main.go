@@ -15,12 +15,6 @@ import (
 
 
 func main() {
-	if len(os.Args) > 1 && os.Args[1] == "generate" {
-		generate()
-		return
-	}
-
-	// Load .env file
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
@@ -39,16 +33,9 @@ func main() {
 		if err != nil {
 			log.Fatalf("Could not connect to the database: %v", err)
 		}
-
-		// Initialize Echo
 		e := echo.New()
-
 		e.Use(middlewares.ResponseMiddleware)
-
-		// Register routes
 		routes.RegisterRoutes(e, db)
-
-		// Start server
 		port := os.Getenv("APP_PORT")
 		if port == "" {
 			port = "8080"
@@ -56,12 +43,10 @@ func main() {
 		e.Logger.Fatal(e.Start(":" + port))
 		return
 	}
-
-	// Start Echo without DB (fallback)
 	e := echo.New()
 	e.Use(middlewares.ResponseMiddleware)
 
-	routes.RegisterRoutes(e, nil) // Pass nil DB
+	routes.RegisterRoutes(e, nil) 
 
 	port := os.Getenv("APP_PORT")
 	if port == "" {
