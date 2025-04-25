@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWave</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.video-container {
+    position: relative;
+    height: 100vh; /* Full height */
+    overflow: hidden;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.page-content {
+    text-align: center;
+}
+
+.features {
+    padding: 30px;
+    background: #000000;
+    color: white;
+}
+
+.features2 {
+    padding: 30px;
+    background: #1a1a1a;
+    color: white;
+}
+
+.about {
+    padding: 30px;
+    background: #000000;
+    color: white;
+}
+
+h2 {
+    font-size: 2em;
+    color: white;
+}
+
+code {
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    color: white;
+    border-radius: 9px;
+}
+
+.features-card {
+    padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.card {
+    border-style: solid;
+    border-color: rgb(60, 136, 250);
+    flex: 1 1 300px;
+    max-width: 300px;
+    background: rgba(18, 18, 18, 0.48);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: left;
+}
+
+
+.card h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color:white;
+
+}
+
+.card p {
+    font-size: 1em;
+    color:rgb(107, 106, 106);
+}
+
+
+.docs-button{
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.about-text{
+    align-items:left; 
+    text-align:justify; 
+    width: 30%;
+    @media screen and (max-width: 768px) {
+        font-size: 0.8em;
+        width: 90%;
+    }
+}
+</style>
+<body>
+    <div class="video-container">
+        <video class="video-bg" autoplay muted loop>
+            <source src="background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="overlay">
+            <div class="content">
+                <img src="GoWave_logo.png" alt="GoWave Logo" class="logo">
+                <h2>Your go-to solution for all things Go!</h2>    
+                <br>
+                <code style="padding: 2%;">git clone https://github.com/rafiramzi/gowave.git</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="features">
+            <h3>Features</h3>
+            <div class="features-card">
+                <div class="card">
+                    <div style="display: flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M2 20V4h20v16zm2-2h16V8H4zm3.5-1l-1.4-1.4L8.675 13l-2.6-2.6L7.5 9l4 4zm4.5 0v-2h6v2z"/></svg>
+                        <h4 style="padding-left: 1%;">GoWave CLI</h4>
+                    </div>
+                    <p>Manage your Go projects with ease using our command-line interface.</p>
+                </div>
+                <div class="card">
+                    <div style="display: flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9 21q-1.65 0-2.825-1.175T5 17V8.825Q4.125 8.5 3.563 7.738T3 6q0-1.25.875-2.125T6 3t2.125.875T9 6q0 .975-.562 1.738T7 8.825V17q0 .825.588 1.413T9 19t1.413-.587T11 17V7q0-1.65 1.175-2.825T15 3t2.825 1.175T19 7v8.175q.875.325 1.438 1.088T21 18q0 1.25-.875 2.125T18 21t-2.125-.875T15 18q0-.975.563-1.75T17 15.175V7q0-.825-.587-1.412T15 5t-1.412.588T13 7v10q0 1.65-1.175 2.825T9 21M6 7q.425 0 .713-.288T7 6t-.288-.712T6 5t-.712.288T5 6t.288.713T6 7m12 12q.425 0 .713-.288T19 18t-.288-.712T18 17t-.712.288T17 18t.288.713T18 19m0-1"/></svg>                        
+                        <h4 style="padding-left: 1%;">Routes</h4>
+                    </div>
+                    <p>Define your web routes more easier!.</p>
+                </div>
+                <div class="card">
+                    <div style="display: flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 20q-.825 0-1.412-.587T4 18t.588-1.412T6 16t1.413.588T8 18t-.587 1.413T6 20m0-6q-.825 0-1.412-.587T4 12t.588-1.412T6 10t1.413.588T8 12t-.587 1.413T6 14m0-6q-.825 0-1.412-.587T4 6t.588-1.412T6 4t1.413.588T8 6t-.587 1.413T6 8m6 0q-.825 0-1.412-.587T10 6t.588-1.412T12 4t1.413.588T14 6t-.587 1.413T12 8m6 0q-.825 0-1.412-.587T16 6t.588-1.412T18 4t1.413.588T20 6t-.587 1.413T18 8m-6 6q-.825 0-1.412-.587T10 12t.588-1.412T12 10t1.413.588T14 12t-.587 1.413T12 14m1 6v-3.075l5.525-5.5q.225-.225.5-.325t.55-.1q.3 0 .575.113t.5.337l.925.925q.2.225.313.5t.112.55t-.1.563t-.325.512l-5.5 5.5zm6.575-5.6l.925-.975l-.925-.925l-.95.95z"/></svg>                        
+                        <h4 style="padding-left: 1%;">Controllers</h4>
+                    </div>                    
+                    <p>Manage your logic with controllers</p>
+                </div>
+                <div class="card">
+                    <div style="display: flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zM5 8.325h14V5H5zm0 5.35h14v-3.35H5zM5 19h14v-3.325H5zM6 7.65v-2h2v2zM6 13v-2h2v2zm0 5.35v-2h2v2z"/></svg>                      
+                        <h4 style="padding-left: 1%;">Models</h4>
+                    </div> 
+                    <p>Manage your database table with Models!</p>
+                </div>
+                <div class="card">
+                    <div style="display: flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M8 16h12V6H8zm0 2q-.825 0-1.412-.587T6 16V4q0-.825.588-1.412T8 2h12q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-4 4q-.825 0-1.412-.587T2 20V6h2v14h14v2zM8 4v12z"/></svg>                     
+                        <h4 style="padding-left: 1%;">Views</h4>
+                    </div>                     
+                    <p>Manage your Client-side UI more easier!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="features2">
+            <h3>Install GoWave</h3>
+            <div style="padding: 2%;">            
+                <code style="padding: 1%;">git clone https://github.com/rafiramzi/gowave.git</code>
+            </div>
+            <h3>See more Documentation</h3>
+            <br>
+            <button class="docs-button">See Docs </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="about">
+            <h3>About</h3>
+            <div style="display: flex; flex-wrap:wrap; justify-content: center; padding-top: 3%;">
+                <div>
+                    <img src="GoWave_logo.png" alt="GoWave Logo" class="logo">
+                </div>
+                <div class="about-text">
+                    <p>GoWave is a Golang frameworks that designed to be easy to use, flexible, and powerful. It allows developers to focus on building their applications without worrying about the underlying infrastructure.</p>
+                    <p>GoWave is developed by Indonesian developer, M. Rafi Ramzi, created with native Golang, Echo Frameworks, and Gorm DB for ORM and model.</p>
+                    <p>With GoWave, Developer can make a Website or API more easier</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>
