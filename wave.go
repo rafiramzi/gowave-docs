@@ -3,15 +3,22 @@ package main
 import (
 	"log"
 	"os"
+
 	"gowave/database"
 	"gowave/middlewares"
 	"gowave/routes"
+	"gowave/utils"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "generate" {
+		generate()
+		return 
+	}
+
 	// Load .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -26,27 +33,29 @@ func main() {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
 
-	// AutoMigrate models :
-
-		// if err := db.AutoMigrate(&models.User{}); err != nil {
-		// 	log.Fatalf("Failed to migrate database: %v", err)
-		// }
-
-		// seeders.Seed(db)
-		// seeders.SeedUsers(db) // Seeder for user
-
 	// Initialize Echo
 	e := echo.New()
 
 	e.Use(middlewares.ResponseMiddleware)
 
 	// Register routes
-	routes.RegisterRoutes(e, db)    // Route untuk login
+	routes.RegisterRoutes(e, db)
 
 	// Start server
 	port := os.Getenv("APP_PORT")
 	if port == "" {
-		port = "8080" // Default port if not specified in .env
+		port = "8080"
 	}
 	e.Logger.Fatal(e.Start(":" + port))
+}
+
+func generate() {
+	if len(os.Args) < 4 {
+		log.Fatalf("Usage: go run main.go generate <folderName> <fileName>")
+	}
+
+	folderName := os.Args[2]
+	fileName := os.Args[3]
+
+	utils.Generate(folderName, fileName)
 }
