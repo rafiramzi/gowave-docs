@@ -10,7 +10,6 @@ import (
 )
 
 func Init() (*gorm.DB, error) {
-	// Format DSN untuk PostgreSQL
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Jakarta",
 		os.Getenv("DB_HOST"),
@@ -22,6 +21,5 @@ func Init() (*gorm.DB, error) {
 
 	log.Println("DSN:", dsn)
 
-	// Koneksi ke PostgreSQL menggunakan GORM
 	return gorm.Open(postgres.Open(dsn), &gorm.Config{})
 }

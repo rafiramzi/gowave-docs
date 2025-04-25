@@ -5,7 +5,6 @@ import (
 	"os"
 	"golang_projects/database"
 	"golang_projects/middlewares"
-	"golang_projects/models"
 	"golang_projects/routes"
 
 	"github.com/joho/godotenv"
@@ -27,13 +26,14 @@ func main() {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
 
-	// AutoMigrate models
-	if err := db.AutoMigrate(&models.Product{}, &models.Category{}, &models.Supplier{}, &models.User{}); err != nil {
-		log.Fatalf("Failed to migrate database: %v", err)
-	}
+	// AutoMigrate models :
 
-	// seeders.Seed(db)
-	// seeders.SeedUsers(db) // Seeder for user
+		// if err := db.AutoMigrate(&models.User{}); err != nil {
+		// 	log.Fatalf("Failed to migrate database: %v", err)
+		// }
+
+		// seeders.Seed(db)
+		// seeders.SeedUsers(db) // Seeder for user
 
 	// Initialize Echo
 	e := echo.New()
