@@ -1,0 +1,62 @@
+@hostname = http://127.0.0.1
+@port = 8080
+@host = {{hostname}}:{{port}}
+@accessToken = {{login.response.body.data.access_token}}
+@testId = {{exams.response.body.exam_tests[0].id}}
+@testId2 = {{exams.response.body.exam_tests[1].id}}
+
+@subtestId = {{start_exams.response.body.exam_subtest.id}}
+@questionId = {{question.response.body.id}}
+
+
+# @name login
+POST {{host}}/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=user1
+&password=password1
+
+### 
+
+# @name get_products
+GET {{host}}/products HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### 
+
+# @name exams
+GET {{host}}/university HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+# @name start_exams
+POST {{host}}/exams/tests/{{testId}}/start HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+###
+
+# @name question
+GET {{host}}/subtests/{{subtestId}}/question?number=1 HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+# @name answer
+POST {{host}}/subtests/{{subtestId}}/answer HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "answers": [
+        {
+            "questionId": "{{questionId}}",
+            "answer": [
+                {"id": 1, "checked": true},
+                {"id": 2, "checked": false}
+            ]
+        }
+    ]
+}
