@@ -1,5 +1,5 @@
 ![GoHave_copy-removebg-preview](https://github.com/user-attachments/assets/c0bdb2b0-3194-48f0-a892-9fb10da22803)
-<h1>GoWave - A Golang MVC freameworks</h1>
+<h1>GoWave - A Golang Backend freameworks</h1>
 <br>
 <br>
 <h3>How to run the server?</h3>
