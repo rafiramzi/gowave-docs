@@ -13,10 +13,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+
 func main() {
 	if len(os.Args) > 1 && os.Args[1] == "generate" {
 		generate()
-		return 
+		return
 	}
 
 	// Load .env file
@@ -25,29 +26,50 @@ func main() {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
 
-	log.Println("DB_NAME:", os.Getenv("DB_NAME"))
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
 
-	// Initialize database connection
-	db, err := database.Init()
-	if err != nil {
-		log.Fatalf("Could not connect to the database: %v", err)
+	if dbUser == "" || dbPassword == "" || dbName == "" {
+		log.Println("⚠️ Skipping database connection: missing DB_USER, DB_PASSWORD, or DB_NAME")
+	} else {
+		log.Println("DB_NAME:", dbName)
+
+		db, err := database.Init()
+		if err != nil {
+			log.Fatalf("Could not connect to the database: %v", err)
+		}
+
+		// Initialize Echo
+		e := echo.New()
+
+		e.Use(middlewares.ResponseMiddleware)
+
+		// Register routes
+		routes.RegisterRoutes(e, db)
+
+		// Start server
+		port := os.Getenv("APP_PORT")
+		if port == "" {
+			port = "8080"
+		}
+		e.Logger.Fatal(e.Start(":" + port))
+		return
 	}
 
-	// Initialize Echo
+	// Start Echo without DB (fallback)
 	e := echo.New()
-
 	e.Use(middlewares.ResponseMiddleware)
 
-	// Register routes
-	routes.RegisterRoutes(e, db)
+	routes.RegisterRoutes(e, nil) // Pass nil DB
 
-	// Start server
 	port := os.Getenv("APP_PORT")
 	if port == "" {
 		port = "8080"
 	}
 	e.Logger.Fatal(e.Start(":" + port))
 }
+
 
 func generate() {
 	if len(os.Args) < 4 {
