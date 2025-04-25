@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"golang_projects/controllers"
+	"gowave/controllers"
 
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"

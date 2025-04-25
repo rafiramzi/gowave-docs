@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 	"os"
-	"golang_projects/database"
-	"golang_projects/middlewares"
-	"golang_projects/routes"
+	"gowave/database"
+	"gowave/middlewares"
+	"gowave/routes"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"

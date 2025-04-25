@@ -1,4 +1,4 @@
-module golang_projects
+module gowave
 
 go 1.23
 
