@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.video-container {
+    position: relative;
+    height: 100vh; /* Full height */
+    overflow: hidden;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.page-content {
+    text-align: center;
+}
+
+.features {
+    padding: 30px;
+    background: #000000;
+    color: white;
+}
+
+.features2 {
+    padding: 30px;
+    background: #1a1a1a;
+    color: white;
+}
+
+.about {
+    padding: 30px;
+    background: #000000;
+    color: white;
+}
+
+h2 {
+    font-size: 2em;
+    color: white;
+}
+
+code {
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    color: white;
+    border-radius: 9px;
+}
+
+.features-card {
+    padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.card {
+    border-style: solid;
+    border-color: rgb(60, 136, 250);
+    flex: 1 1 300px;
+    max-width: 300px;
+    background: rgba(18, 18, 18, 0.48);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: left;
+}
+
+
+.card h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color:white;
+
+}
+
+.card p {
+    font-size: 1em;
+    color:rgb(107, 106, 106);
+}
+
+
+.docs-button{
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.about-text{
+    align-items:left; 
+    text-align:justify; 
+    width: 30%;
+    @media screen and (max-width: 768px) {
+        font-size: 0.8em;
+        width: 90%;
+    }
+}
