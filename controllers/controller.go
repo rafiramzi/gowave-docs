@@ -16,3 +16,4 @@ func (pc *Controller) GetHello(c echo.Context) error {
 	}
 	return c.Render(http.StatusOK, "welcome.html", data)
 }
+

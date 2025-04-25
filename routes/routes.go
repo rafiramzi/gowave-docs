@@ -10,6 +10,6 @@ import (
 func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
 	controller := controllers.Controller{DB: db}
 
-	r := e.Group("/")
-		r.GET("", controller.GetHello)
+	e.GET("", controller.GetHello)
+
 }
