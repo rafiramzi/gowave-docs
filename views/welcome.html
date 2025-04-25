@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWave</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/static/GoWave_logo.png" alt="GoWave Logo" class="logo">
+        <p>Welcome to {{.Message}}, your go-to solution for all things Go!</p>    
+    </div>
+</body>
+</html>

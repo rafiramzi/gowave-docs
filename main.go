@@ -19,11 +19,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
-
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
-
 	if dbUser == "" || dbPassword == "" || dbName == "" {
 		log.Println("⚠️ Skipping database connection: missing DB_USER, DB_PASSWORD, or DB_NAME")
 	} else {
@@ -44,10 +42,11 @@ func main() {
 		return
 	}
 	e := echo.New()
+	e.Renderer = utils.NewRenderer("views/*.html")
+	e.Static("/static", "static")
+
 	e.Use(middlewares.ResponseMiddleware)
-
 	routes.RegisterRoutes(e, nil) 
-
 	port := os.Getenv("APP_PORT")
 	if port == "" {
 		port = "8080"

@@ -11,8 +11,8 @@ type Controller struct {
 }
 
 func (pc *Controller) GetHello(c echo.Context) error {
-
-	var hello_world = "Hello World!"
-
-	return c.String(http.StatusOK, hello_world)
+	data := map[string]interface{}{
+		"Message": "GoWave",
+	}
+	return c.Render(http.StatusOK, "welcome.html", data)
 }
