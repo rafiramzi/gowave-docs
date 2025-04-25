@@ -3,7 +3,7 @@
 <br>
 <br>
 <h3>How to run the server?</h3>
-<p>Just type in the terminal "go run wave.go"</p>
+<p>Just type in the terminal <code>go run wave.go</code></p>
 <br>
 <h3>Where should we define routes?</h3>
 <p>Go to the "/routes/routes.go". that is where all route should defined.</p>
