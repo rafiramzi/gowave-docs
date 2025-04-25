@@ -9,10 +9,10 @@
 <p>Go to the "/routes/routes.go". that is where all route should defined.</p>
 <br>
 <h3>How to Generate Controllers, Models, and middleware?</h3>
-<p>Just type in the terminal <code>go run wave.go generate {controllers, or models, or middlewares} {controller name, or models name, or middlewares name}</code></p>
+<p>Just type in the terminal <code>go run main.go generate {controllers, or models, or middlewares} {controller name, or models name, or middlewares name}</code></p>
 <p>Examples:</p>
-<code>go run wave.go generate controllers User</code>
+<code>go run main.go generate controllers User</code>
 <br>
-<code>go run wave.go generate model Users</code>
+<code>go run main.go generate model Users</code>
 <br>
-<code>go run wave.go generate middlewares Auth</code>
+<code>go run main.go generate middlewares Auth</code>
