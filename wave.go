@@ -73,7 +73,7 @@ func main() {
 
 func generate() {
 	if len(os.Args) < 4 {
-		log.Fatalf("Usage: go run main.go generate <folderName> <fileName>")
+		log.Fatalf("GoWave : Invalid arguments.")
 	}
 
 	folderName := os.Args[2]
