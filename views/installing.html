@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWave Docs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <style>
+        /* Basic styles for body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            color: white;
+            background-color: rgb(20, 20, 20);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: black;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            height: 100%;
+            border-right: 1px solid rgb(82, 82, 82);
+        }
+
+        .sidebar h2 {
+            color: #fff;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            margin: 8px 0;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        /* Content area styles */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        p {
+            color: white;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        /* Add a thin separator border between sections */
+        section {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        section:last-of-type {
+            border-bottom: none; /* Remove the border from the last section */
+        }
+
+        .code{
+            padding: 1%; 
+            background-color: #000000; 
+            color: rgb(255, 255, 255); 
+            border-radius: 5px;
+        }
+
+        .code-snip {
+            background-color: #000000; 
+            color: rgb(255, 255, 255); 
+            border-radius: 5px;
+            width: max-content;
+            padding: 1%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2 style="color: #3b82f6;">GoWave</h2>
+        <a href="#section1">Introduction</a>
+        <a href="#section2">Installing</a>
+        <a href="#section3">Routes</a>
+        <a href="#section4">Generate</a>
+        <a href="#section5">Controllers</a>
+        <a href="#section6">Views</a>
+        <a href="#section7">Models</a>
+        <a href="#section8">Middlewares</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <h1>Documentation</h1>
+
+        <section id="section1">
+            <h2>Introduction</h2>
+            <p>GoWave is a Golang frameworks that designed to be easy to use, flexible, and powerful. It allows developers to focus on building their applications without worrying about the underlying infrastructure.</p>
+            <p>GoWave is developed by Indonesian developer, M. Rafi Ramzi, created with native Golang, Echo Frameworks, and Gorm DB for ORM and model.</p>
+            <p>With GoWave, Developer can make a Website or API more easier</p>        
+        </section>
+
+        <section id="section2">
+            <h2>Installing GoWave Project</h2>
+            <p>To install GoWave, simply clone this repository:</p>
+            <code class="code">git clone https://github.com/rafiramzi/gowave.git</code>
+            <p>And run server using this code in your terminal:</p>
+            <code class="code">go run .</code>
+
+        </section>
+
+        <section id="section3">
+            <h2>Routes</h2>
+            <p>To apply routes, go to the "/routes/routes.go", and define the routes there</p>
+            <p>There are 4 HTTP request method supported</p>
+            <ul>
+                <li>GET</li>
+                <li>POST</li>
+                <li>PUT</li>
+                <li>DELETE</li>
+            </ul>
+            <p>Example usage:</p>
+            <pre class="code-snip"><code class="language-javascript">
+func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
+    controller := controllers.Controller{DB: db}
+                    
+    e.GET("/hello", controller.GetHello)
+    e.POST("/hello", controller.HelloPost)
+    e.PUT("/hello/:id", controller.HelloPut)
+    e.DELETE("/hello/:id", controller.HelloDelete)
+}
+            </code></pre>
+            <p>And grouping routes like this:</p>
+            <pre class="code-snip"><code class="language-javascript">
+func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
+    controller := controllers.Controller{DB: db}
+
+    g := e.Group("/auth")
+        e.GET("/login", controller.GetLogin)
+        e.POST("/login", controller.Login)
+}
+            </code></pre>
+        </section>
+
+        <section id="section4">
+            <h2>Generate Controlers, Models, and Middlewares</h2>
+            <p>To generate Controllers, Models, or Middlewares, you can generate them by command. Example:</p>
+            <p>1. Generate controllers</p>
+            <code class="code">go run main.go generate controllers User</code>
+            <p>2. Generate models</p>
+            <code class="code">go run main.go generate models User</code>
+            <p>3. Generate middlewares</p>
+            <code class="code">go run main.go generate middlewares Auth</code>
+        </section>
+
+        <section id="section5">
+            <h2>Controllers</h2>
+            <b>1. Return view</b>
+            <pre class="code-snip"><code class="language-javascript">
+func (pc *Controller) GetHello(c echo.Context) error {
+	return c.Render(http.StatusOK, "hello.html", nil)
+}
+            </code></pre>
+            Return view with data :
+            <pre class="code-snip"><code class="language-javascript">
+func (pc *Controller) GetHello(c echo.Context) error {
+    data := map[string]interface{}{
+		"Message": "Hello World!",
+	}
+	return c.Render(http.StatusOK, "hello.html", data)
+}
+            </code></pre>
+            <b>2. Using model</b>
+            <pre class="code-snip"><code class="language-javascript">
+var user models.User
+if err := ac.DB.Where("username = ?", username).First(&user).Error; err != nil {
+	c.Set("message", "Invalid username or password")
+	c.Set("status", http.StatusUnauthorized)
+	return err
+}
+            </code></pre>
+        </section>
+        <section id="section6">
+            <h2>Views</h2>
+            <p>To create a view, you can create a file with .html extension in the views folder</p>
+        </section>
+        <section id="section7">
+            <h2>Models</h2>
+            <p>To create a model, you can create a file with .go extension in the models folder</p>
+            <p>Example:</p>
+            <pre class="code-snip"><code class="language-javascript">
+type User struct {
+	gorm.Model
+	Username string `json:"username" gorm:"unique"`
+	Password string `json:"password"` 
+}
+            </code></pre>        
+        </section>
+        <section id="section8">
+            <h2>Middlewares</h2>
+            <p>To create a middleware, you can create a file with .go extension in the middlewares folder</p>
+            <p>Example:</p>
+                        <pre class="code-snip"><code class="language-javascript">
+func JWTMiddleware() echo.MiddlewareFunc {
+	secretKey := []byte("your_secret_key")
+
+	config := echojwt.Config{
+		SigningKey: secretKey,
+		ErrorHandler: func(c echo.Context, err error) error {
+			return c.JSON(http.StatusUnauthorized, map[string]string{
+				"message": "Token not valid or not found",
+			})
+		},
+	}
+
+	return echojwt.WithConfig(config)
+}
+            </code></pre>  
+    </div>
+
+</body>
+</html>

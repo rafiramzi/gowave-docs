@@ -74,7 +74,7 @@
             </div>
             <h3>See more Documentation</h3>
             <br>
-            <button class="docs-button">See Docs </button>
+            <button id="docs-button" class="docs-button">See Docs </button>
         </div>
     </div>
     <div class="page-content">
@@ -92,7 +92,11 @@
             </div>
         </div>
     </div>
-    
-
 </body>
+<script>
+    const button = document.getElementById('docs-button');
+    button.addEventListener('click', () => {
+        window.location.href = '/docs/installing';
+    });
+</script>
 </html>

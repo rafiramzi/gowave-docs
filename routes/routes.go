@@ -11,5 +11,7 @@ func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
 	controller := controllers.Controller{DB: db}
 
 	e.GET("", controller.GetHello)
+	g := e.Group("/docs")
+		g.GET("/installing", controller.GetInstalling)
 
 }

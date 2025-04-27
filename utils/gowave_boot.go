@@ -13,7 +13,17 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
-func Boot(){
+
+func NewApp() *echo.Echo {
+	e := echo.New()
+	e.Renderer = NewRenderer("./views/*.html")
+	e.Static("/static", "static")
+	e.Use(middlewares.ResponseMiddleware)
+	return e
+}
+
+
+func Boot() {
 	if len(os.Args) >= 2 && os.Args[1] == "generate" {
 		generate()
 		return
@@ -23,37 +33,27 @@ func Boot(){
 	if err != nil {
 		log.Fatalf("Error loading .env file: %v", err)
 	}
+
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
+
+	e := NewApp()
+
 	if dbUser == "" || dbPassword == "" || dbName == "" {
 		log.Println("⚠️ Skipping database connection: missing DB_USER, DB_PASSWORD, or DB_NAME")
+		routes.RegisterRoutes(e, nil)
 	} else {
 		log.Println("DB_NAME:", dbName)
-
 		db, err := database.Init()
 		if err != nil {
 			log.Fatalf("Could not connect to the database: %v", err)
 		}
-		e := echo.New()
-		e.Use(middlewares.ResponseMiddleware)
 		routes.RegisterRoutes(e, db)
-		port := os.Getenv("APP_PORT")
-		if port == "" {
-			port = "8080"
-		}
-		e.Logger.Fatal(e.Start(":" + port))
-		return
 	}
-	e := echo.New()
-	e.Renderer = NewRenderer("views/*.html")
-	e.Static("/static", "static")
 
-	e.Use(middlewares.ResponseMiddleware)
-	routes.RegisterRoutes(e, nil)
 	apiMode := os.Getenv("API_MODE")
-
-	if(apiMode != "true"){
+	if apiMode != "true" {
 		e.HTTPErrorHandler = NotFoundHandler
 	}
 
@@ -63,6 +63,7 @@ func Boot(){
 	}
 	e.Logger.Fatal(e.Start(":" + port))
 }
+
 
 func NotFoundHandler(err error, c echo.Context) {
 	code := 404
