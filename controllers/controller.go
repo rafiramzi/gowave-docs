@@ -19,9 +19,6 @@ func (pc *Controller) GetHello(c echo.Context) error {
 
 
 
-func (pc *Controller) GetInstalling(c echo.Context) error {
-	data := map[string]interface{}{
-		"Message": "GoWave",
-	}
-	return c.Render(http.StatusOK, "installing.html", data)
+func (pc *Controller) GetDocs(c echo.Context) error {
+	return c.Render(http.StatusOK, "installing.html", nil)
 }
